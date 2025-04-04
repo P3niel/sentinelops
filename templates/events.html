@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Anomalies - SentinelOps{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">🚨 Anomalies Détectées</h1>
+
+{% if anomalies %}
+    <ul class="list-group">
+        {% for anomaly in anomalies %}
+        <li class="list-group-item list-group-item-danger">
+            {{ anomaly }}
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div class="alert alert-success text-center mt-3">
+        ✅ Aucune anomalie détectée
+    </div>
+{% endif %}
+
+<p class="text-center text-muted mt-4">⏱️ Page actualisée automatiquement toutes les 5 secondes</p>
+{% endblock %}

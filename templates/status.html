@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Status Système - SentinelOps{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">🖥️ Status Système</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr><th>Paramètre</th><th>Valeur</th></tr>
+        </thead>
+        <tbody>
+        {% for key, value in data.items() %}
+            <tr>
+                <td><strong>{{ key }}</strong></td>
+                <td>
+                    {% if key in ['cpu_percent', 'ram_percent', 'disk_percent'] %}
+                        {% set val = value|float %}
+                        {% if (key == 'disk_percent' and val > 85) or (val > 75) %}
+                            <span class="badge bg-danger">{{ value }}</span>
+                        {% elif (key == 'disk_percent' and val > 70) or (val > 50) %}
+                            <span class="badge bg-warning text-dark">{{ value }}</span>
+                        {% else %}
+                            <span class="badge bg-success">{{ value }}</span>
+                        {% endif %}
+                    {% else %}
+                        {{ value }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p class="text-center text-muted mt-3">⏱️ Auto-refresh toutes les 5 secondes</p>
+{% endblock %}

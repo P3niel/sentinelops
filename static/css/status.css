@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    padding-top: 4rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #f0f0f0;
+    }
+    .table {
+        color: #f0f0f0;
+        background-color: #1e1e1e;
+    }
+    .table-bordered td,
+    .table-bordered th {
+        border-color: #333;
+    }
+    .table-dark {
+        background-color: #222;
+    }
+}
+
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.badge {
+    font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+    table {
+        font-size: 0.9rem;
+    }
+}

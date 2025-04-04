@@ -1,7 +1,4 @@
-# monitor.py
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+# app/monitor.py
 
 import psutil
 import socket
@@ -11,7 +8,10 @@ from logs.logger import get_logger
 
 logger = get_logger()
 
-def get_system_info():
+def get_system_info() -> dict:
+    """
+    Récupère les informations système : CPU, RAM, disque, uptime, IP, etc.
+    """
     info = {}
 
     try:
@@ -32,17 +32,17 @@ def get_system_info():
 
         # Uptime
         boot_time = datetime.fromtimestamp(psutil.boot_time())
-        now = datetime.now()
-        uptime = now - boot_time
+        uptime = datetime.now() - boot_time
         info['uptime'] = str(uptime).split('.')[0]
 
-        # IP
+        # IP & Hostname
         hostname = socket.gethostname()
-        ip_address = socket.gethostbyname(hostname)
-        info['hostname'] = hostname
-        info['ip'] = ip_address
+        ip = socket.gethostbyname(hostname)
 
-        # Système
+        info['hostname'] = hostname
+        info['ip'] = ip
+
+        # OS Info
         info['system'] = platform.system()
         info['release'] = platform.release()
         info['kernel'] = platform.version()
@@ -52,8 +52,4 @@ def get_system_info():
 
     except Exception as e:
         logger.error("Erreur dans get_system_info: %s", str(e))
-        return {'error': str(e)}
-
-if __name__ == "__main__":
-    from pprint import pprint
-    pprint(get_system_info())
+        return {"error": str(e)}
