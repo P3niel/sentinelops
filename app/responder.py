@@ -2,6 +2,8 @@
 
 import subprocess
 from logs.logger import get_logger
+from logs.logger import get_event_logger
+
 
 logger = get_logger()
 
@@ -44,3 +46,13 @@ def respond_to(anomalies: list):
                     action()
                 except Exception as e:
                     logger.error(f"Erreur dans l'action '{pattern}' : {e}")
+
+
+
+event_logger = get_event_logger()
+
+def respond_to(anomalies: list):
+    for a in anomalies:
+        event_logger.info(a)
+        # Ici plus tard tu pourras aussi : notifier, bloquer IP, etc.
+

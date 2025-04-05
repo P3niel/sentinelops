@@ -1,0 +1,14 @@
+# .dockerignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite
+venv/
+venvs/
+.env
+.git
+.gitignore
+Dockerfile
+*.swp

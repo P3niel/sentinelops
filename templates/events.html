@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}Anomalies - SentinelOps{% endblock %}
+{% block title %}Événements - SentinelOps{% endblock %}
 
 {% block content %}
-<h1 class="text-center mb-4">🚨 Anomalies Détectées</h1>
+<h1 class="text-center mb-4">📜 Événements enregistrés</h1>
 
-{% if anomalies %}
+{% if events %}
     <ul class="list-group">
-        {% for anomaly in anomalies %}
-        <li class="list-group-item list-group-item-danger">
-            {{ anomaly }}
+        {% for event in events %}
+        <li class="list-group-item">
+            <strong>{{ event[0] }}</strong> — {{ event[1] }}
         </li>
         {% endfor %}
     </ul>
 {% else %}
-    <div class="alert alert-success text-center mt-3">
-        ✅ Aucune anomalie détectée
+    <div class="alert alert-info text-center mt-3">
+        ℹ️ Aucun événement enregistré pour le moment.
     </div>
 {% endif %}
 
-<p class="text-center text-muted mt-4">⏱️ Page actualisée automatiquement toutes les 5 secondes</p>
+<form action="{{ url_for('generate_report') }}" method="get" class="mt-4 text-center">
+    <button type="submit" class="btn btn-primary">
+        📄 Générer Rapport d'Activité
+    </button>
+</form>
 {% endblock %}

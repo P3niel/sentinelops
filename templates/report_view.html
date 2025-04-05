@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📄 Rapport d'Activité SentinelOps</h2>
+<iframe src="{{ url_for('static', filename='reports/' + report_file) }}" width="100%" height="600px" style="border: none;"></iframe>
+{% endblock %}

@@ -1,0 +1,31 @@
+name: CI - SentinelOps
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout du repo
+        uses: actions/checkout@v3
+
+      - name: 🐳 Build Docker image
+        run: docker build -t sentinelops .
+
+      - name: ✅ Vérifie que l’image tourne
+        run: |
+          docker run -d --name sentinelops_test -p 5000:5000 sentinelops
+          sleep 5
+          curl -f http://localhost:5000/ || (docker logs sentinelops_test && exit 1)
+
+      - name: 📦 Génère un rapport
+        run: |
+          docker exec sentinelops_test python static/reports/generate_report.py || exit 1
+
+      - name: 🧹 Nettoyage
+        run: docker stop sentinelops_test && docker rm sentinelops_test
