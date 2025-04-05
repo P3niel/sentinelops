@@ -1,4 +1,4 @@
-name: 🚀 Déploiement auto vers Ubuntu Server
+name: 🚀 Déploiement SentinelOps
 
 on:
   push:
@@ -12,24 +12,27 @@ jobs:
       - name: 📥 Checkout du code
         uses: actions/checkout@v4
 
-      - name: 🔐 Setup SSH
+      - name: 🔐 Activer la clé SSH
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: 🚀 Déployer sur le serveur
+      - name: 🚀 Connexion et déploiement sur le serveur
         run: |
           ssh -o StrictHostKeyChecking=no kami@87.231.218.73 << 'EOF'
+            echo "🌀 Déploiement SentinelOps"
             cd ~/SentinelOps
-            echo "📦 Pulling dernière version du dépôt..."
+
+            echo "📦 Pull du dépôt Git"
             git pull origin main
 
-            echo "🐳 Rebuilding containers..."
+            echo "🐳 Build et relance Docker"
+            docker compose -f infra/docker-compose.yml down
             docker compose -f infra/docker-compose.yml build
             docker compose -f infra/docker-compose.yml up -d
 
-            echo "📝 Génération du rapport d'activité..."
+            echo "📄 Génération automatique du rapport"
             docker exec sentinelops python static/reports/generate_report.py
 
-            echo "✅ Déploiement terminé avec succès !"
+            echo "✅ Fin du déploiement auto"
           EOF
