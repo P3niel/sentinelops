@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  sentinelops:
+    container_name: sentinelops
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs:/home/sentinel/app/logs
+      - ./static/reports:/home/sentinel/app/static/reports
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1

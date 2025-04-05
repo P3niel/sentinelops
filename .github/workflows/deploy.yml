@@ -1,0 +1,29 @@
+name: 🚀 Déploiement auto vers Ubuntu Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: 📦 Déploiement sur Ubuntu Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v3
+
+      - name: 🔐 Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: 🚀 Déployer sur le serveur
+        run: |
+          ssh -o StrictHostKeyChecking=no kami@192.168.0.21 << 'EOF'
+            cd ~/SentinelOps
+            git pull origin main
+            docker-compose down
+            docker-compose up --build -d
+          EOF
