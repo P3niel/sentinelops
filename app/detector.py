@@ -1,27 +1,34 @@
 # app/detector.py
+from datetime import datetime
 
-from logs.logger import get_logger
-
-logger = get_logger()
-
-THRESHOLDS = {
-    "cpu_percent": 90,
-    "ram_percent": 85,
-    "disk_percent": 90
-}
 def detect_anomalies(system_info: dict) -> list:
     anomalies = []
 
-    if system_info.get("cpu_percent", 0) > THRESHOLDS["cpu_percent"]:
-        anomalies.append(f"CPU trop élevé : {system_info['cpu_percent']}%")
+    if system_info["cpu_percent"] > 90:
+        anomalies.append({
+            "type": "CPU critique",
+            "message": f"Utilisation CPU élevée ({system_info['cpu_percent']}%)",
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "hostname": system_info.get("hostname"),
+            "ip": system_info.get("ip")
+        })
 
-    if system_info.get("ram_percent", 0) > THRESHOLDS["ram_percent"]:
-        anomalies.append(f"RAM critique : {system_info['ram_percent']}%")
+    if system_info["ram_percent"] > 85:
+        anomalies.append({
+            "type": "RAM critique",
+            "message": f"Utilisation RAM anormale ({system_info['ram_percent']}%)",
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "hostname": system_info.get("hostname"),
+            "ip": system_info.get("ip")
+        })
 
-    if system_info.get("disk_percent", 0) > THRESHOLDS["disk_percent"]:
-        anomalies.append(f"Disque presque plein : {system_info['disk_percent']}%")
-
-    if anomalies:
-        logger.warning("Anomalies détectées : %s", anomalies)
+    if system_info["disk_percent"] > 90:
+        anomalies.append({
+            "type": "Disque presque plein",
+            "message": f"Espace disque faible ({system_info['disk_percent']}%)",
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "hostname": system_info.get("hostname"),
+            "ip": system_info.get("ip")
+        })
 
     return anomalies

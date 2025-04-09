@@ -1,38 +1,117 @@
+/* 🌐 Typographie globale */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
     padding-top: 4rem;
+    background-color: #ffffff;
+    color: #1e1e1e;
+    line-height: 1.6;
 }
 
+/* 🌓 Dark mode */
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #121212;
         color: #f0f0f0;
     }
-    .table {
-        color: #f0f0f0;
+
+    table {
         background-color: #1e1e1e;
+        color: #f0f0f0;
     }
-    .table-bordered td,
-    .table-bordered th {
+
+    th, td {
         border-color: #333;
     }
+
     .table-dark {
         background-color: #222;
     }
 }
 
-h1 {
-    font-size: 1.8rem;
+/* 🧾 Titres */
+h1, h2, h3 {
     text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: inherit;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+/* 📊 Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 1rem;
 }
 
-.badge {
-    font-size: 1rem;
+thead {
+    background-color: #f0f0f0;
 }
 
-@media (max-width: 576px) {
+@media (prefers-color-scheme: dark) {
+    thead {
+        background-color: #1e1e1e;
+    }
+
+    td, th {
+        border: 1px solid #333;
+        background-color: #181818;
+        color: #f0f0f0;
+    }
+
+    tr:nth-child(even) {
+        background-color: #1a1a1a;
+    }
+}
+
+
+/* 🎯 Badge style */
+.badge {
+    display: inline-block;
+    padding: 0.3em 0.6em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.3rem;
+    background-color: #007bff;
+    color: white;
+    margin-right: 0.5rem;
+}
+
+/* ✅ Badge de succès */
+.badge-success {
+    background-color: #28a745;
+}
+
+/* ⚠️ Badge d'alerte */
+.badge-warning {
+    background-color: #ffc107;
+    color: #1e1e1e;
+}
+
+/* ❌ Badge d'erreur */
+.badge-danger {
+    background-color: #dc3545;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
     table {
         font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+
+    .badge {
+        font-size: 0.8rem;
     }
 }

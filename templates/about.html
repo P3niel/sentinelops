@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>À propos — SentinelOps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 🌈 TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 🎬 Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- 🔗 Navbar -->
+  <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-700">🛡️ SentinelOps</h1>
+    <a href="/" class="text-blue-500 hover:text-blue-700 font-medium">🏠 Accueil</a>
+  </nav>
+
+  <!-- 🧠 Intro Section -->
+  <section class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg animate__animated animate__fadeInUp">
+    <h2 class="text-3xl font-bold text-center mb-4 text-gray-800 animate__animated animate__fadeInDown">À propos de SentinelOps</h2>
+
+    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+      SentinelOps est une application légère de monitoring local. Elle détecte les anomalies système (RAM, CPU, disque), les enregistre, les affiche dans une interface web… et peut même envoyer des mails d’alerte 🧠📩
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-blue-100 p-4 rounded-xl animate__animated animate__fadeInLeft">
+        <h3 class="font-semibold text-blue-800">🎯 Objectif</h3>
+        <p class="text-sm text-gray-700 mt-2">Détecter et réagir aux anomalies système comme un pro, même en local.</p>
+      </div>
+      <div class="bg-green-100 p-4 rounded-xl animate__animated animate__fadeInRight">
+        <h3 class="font-semibold text-green-800">🧰 Technologies</h3>
+        <p class="text-sm text-gray-700 mt-2">Python, Flask, Docker, GitHub Actions, Mailtrap, TailwindCSS…</p>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="/ui/status" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl transition transform hover:scale-105 animate__animated animate__pulse animate__infinite">
+        🚀 Voir l'état système
+      </a>
+    </div>
+  </section>
+
+  <!-- 💰 ROI Section -->
+  <section class="bg-white py-10 px-6 rounded-lg shadow-lg mt-8">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">💰 ROI (Retour sur investissement)</h2>
+    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+      Pourquoi SentinelOps vaut la peine d’être intégré dans une infrastructure DevOps réelle ?
+    </p>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left text-gray-700 border border-gray-300">
+        <thead class="bg-gray-100 font-semibold">
+          <tr>
+            <th class="px-6 py-3">✅ Bénéfice</th>
+            <th class="px-6 py-3">📈 Impact direct</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-t">
+            <td class="px-6 py-4">🔎 Surveillance locale intelligente</td>
+            <td class="px-6 py-4">Moins de pannes silencieuses, diagnostic accéléré</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-6 py-4">📬 Alertes automatiques</td>
+            <td class="px-6 py-4">Réactivité &lt; 2 minutes après incident</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-6 py-4">📝 Rapports HTML auto-générés</td>
+            <td class="px-6 py-4">Traçabilité claire pour audits ou support</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-6 py-4">🔄 Déploiement CI/CD automatisé</td>
+            <td class="px-6 py-4">Zéro erreur humaine en prod</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-6 py-4">🐳 Dockerisation</td>
+            <td class="px-6 py-4">Portabilité et isolation garanties</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-6 text-gray-500">
+      ⏱️ Temps économisé estimé : <strong>4h/semaine</strong> | Utilisation idéale : lab, serveurs internes, vitrine DevOps.
+    </div>
+  </section>
+
+  <!-- 🔚 Footer -->
+  <footer class="text-center text-sm text-gray-500 mt-10 mb-4">
+    Made with ❤️ by Kami — 2025
+  </footer>
+
+</body>
+</html>

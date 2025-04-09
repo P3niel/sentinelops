@@ -9,6 +9,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
+      - .:/home/sentinel/app
       - ./logs:/home/sentinel/app/logs
       - ./static/reports:/home/sentinel/app/static/reports
     restart: unless-stopped

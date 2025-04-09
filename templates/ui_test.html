@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-6 max-w-xl mx-auto text-center">
+  <h1 class="text-2xl font-bold mb-4">🧪 Test Notification</h1>
+  <form action="{{ url_for('ui_fake_alert') }}" method="POST">
+    <button type="submit" class="bg-blue-600 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded">
+      Envoyer une fausse alerte
+    </button>
+  </form>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="mt-4">
+        {% for category, message in messages %}
+          <div class="bg-green-100 text-green-800 p-2 rounded mb-2">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+</div>
+{% endblock %}
